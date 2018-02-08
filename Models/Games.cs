@@ -11,6 +11,7 @@ namespace Hangman.Models
     private List<char> _lettersGuessed = new List<char> {};
     private char[] _gameBoard;
     private string _gameBoardString;
+    private static List<Game> = new List<Game> {};
 
     public Game(string word)
     {

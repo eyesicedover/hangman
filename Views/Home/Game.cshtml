@@ -6,3 +6,8 @@
 <p>Turns left: @Model.GetTurns()</p>
 <p>@Model.GetGameBoardString()</p>
 <p>@Model.GetWord()</p>
+<form action="/game/letter" method="post">
+  <label for="userLetter">ENTER A LETTER</label>
+  <input id="userLetter" name="userLetter" class="form-control">
+  <button type="submit" class="btn btn-primary">
+</form>
