@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Mvc;
-//using Hangman.Models;
+using Hangman.Models;
 
 namespace Hangman.Controllers
 {
@@ -11,6 +11,16 @@ namespace Hangman.Controllers
     public ActionResult Index()
     {
       return View();
+    }
+
+    [HttpPost("/game")]
+    public ActionResult CreateGame()
+    {
+      string gameWord = Request.Form["word"];
+      Game newGame = new Game(gameWord);
+      newGame.SetGameBoard();
+      newGame.MakeGameBoardString();
+      return View("Game", newGame);
     }
   }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace Hangman.Models
 {
@@ -7,15 +8,15 @@ namespace Hangman.Models
     private string _word;
     private char[] _letters;
     private int _turnsLeft;
-    private List<char> _lettersGuessed;
+    private List<char> _lettersGuessed = new List<char> {};
     private char[] _gameBoard;
+    private string _gameBoardString;
 
     public Game(string word)
     {
       _word = word;
       _letters = word.ToCharArray();
       _turnsLeft = 6;
-      _lettersGuessed = {};
       _gameBoard = word.ToCharArray();
     }
 
@@ -36,12 +37,22 @@ namespace Hangman.Models
 
     public int GetTurns()
     {
-      return _turns;
+      return _turnsLeft;
     }
 
     public void SetTurns(int num)
     {
-      _turns -= num;
+      _turnsLeft -= num;
+    }
+
+    public string GetGameBoardString()
+    {
+      return _gameBoardString;
+    }
+
+    public void SetGameBoardString(string word)
+    {
+      _gameBoardString = word;
     }
 
     public List<char> GetLettersGuessed()
@@ -59,19 +70,26 @@ namespace Hangman.Models
       return _gameBoard;
     }
 
+    public void MakeGameBoardString()
+    {
+      string gbString = new string(_gameBoard);
+      _gameBoardString = gbString;
+    }
+
     public void SetGameBoard()
     {
       for (int index = 0; index < _gameBoard.Length; index++)
       {
-        _gameBoard[index] = "_";
+        char underScore = Convert.ToChar("_");
+        _gameBoard[index] = underScore;
       }
     }
 
     public void UpdateGameBoard(char letter)
     {
-      for (int index = 0; index < _letter.Length; index++)
+      for (int index = 0; index < _letters.Length; index++)
       {
-        if (_letter[index] == letter)
+        if (_letters[index] == letter)
         {
           _gameBoard[index] = letter;
         }
